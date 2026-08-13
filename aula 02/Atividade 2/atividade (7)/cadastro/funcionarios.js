@@ -5,39 +5,40 @@ const Conexão = mysql.createConnection({
     host: "localHost",
     user: "root",
     password: "root",
-    database: "INSTITUICAO"
+    database: "CadastroEmpresa"
 })
 // dados que seram cadastrados 
 
-const nome_do_curso = "Relações Humanas";
-const carga_horaria = "600";
+const nome = "";
+const cargo = "";
+const salario = "";
 
 // comandos mysql
-const insert = "INSERT INTO cursos (nome_do_curso, carga_horaria) values (?,?)";
+const insert = "INSERT INTO funcionarios (nome, cargo, salario) values (?,?)";
 
 // dadso que ream envidados 
-Conexão.query(insert,[nome_do_curso,carga_horaria],function (erro){
+Conexão.query(insert,[nome,cargo, salario],function (erro){
     // este e o nosso se e senao 
     if (erro){
         console.lof("erro ao cadastrar.");
         console.log(erro);
     }else{
-        console.log("Cursos cadastrados com sucesso!");
+        console.log("Funcionarios cadastrados com sucesso!");
     }
 });
 // id do cursos que seram deletados 
 const id = 6;
 
-const deletar = "delete from cursos where id = ?";
+const deletar = "delete from funcionarios where id = ?";
 
 Conexão.query(deletar,[id], function (erro, resultado){
     if(erro){
-        console.log("Erro ao excluir o curso.");
+        console.log("Erro ao excluir o funcionario.");
         console.log(erro);
     }else if (resultado.affectedRows === 0){
-        console.log("Curso não encontrado.");
+        console.log("Funcionario não encontrado.");
     }else{
-        console.log("Curso excluido com sucesso!");
+        console.log("Funcionario excluido com sucesso!");
     }
     Conexão.end();
 });
