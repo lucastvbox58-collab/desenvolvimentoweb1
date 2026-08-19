@@ -1,0 +1,14 @@
+create database if not exists cadastro;
+use cadastro;
+
+create table if not exists alunos(
+id INT AUTO_INCREMENT PRIMARY KEY, nome VARCHAR(100), email VARCHAR(100),
+endereco VARCHAR(100),
+matricula VARCHAR(100),
+curso VARCHAR(100),
+Serie VARCHAR(100)
+);
+
+select * from alunos
+
+
