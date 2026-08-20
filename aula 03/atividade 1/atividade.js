@@ -6,29 +6,46 @@ const conexao = mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"root",
-    database:"escola"
+    database:"cadastro"
 });
 
 // funcao para cadastrar aluno
-function cadastrarAluno(){
+function cadastrarAluno() {
 
-    const nome = readline.question("Digite o nome do aluno:");
-    const email = readline.question("Digite o email do aluno:");
+    const nome = readline.question("Digite o nome do aluno: ");
+    const email = readline.question("Digite o email do aluno: ");
+    const endereco = readline.question("Digite o endereço do aluno: ");
+    const matricula = readline.question("Digite o número de matrícula do aluno: ");
+    const curso = readline.question("Digite o curso do aluno: ");
+    const Serie = readline.question("Digite a série do aluno: ");
 
-    const insert = "INSERT INTO alunos (nome, email) VALUES(?,?)";
+    const insert = `
+        INSERT INTO alunos
+        (nome, email, endereco, matricula, curso, Serie)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
 
-    conexao.query(insert, [nome, email], function(erro) {
-        if (erro){
-            console.log("Erro ao cadastrar.");
-            console.log(erro);
-        }else{
-            console.log("Alunos casdastrados com sucesso!");
+    conexao.query(
+        insert,
+        [nome, email, endereco, matricula, curso, Serie],
+        function (erro, resultado) {
+
+            if (erro) {
+
+                console.log("ERRO AO CADASTRAR:");
+                console.log(erro);
+
+            } else {
+
+                console.log("Aluno cadastrado com sucesso!");
+                console.log("ID criado:", resultado.insertId);
+
+            }
+
+            menu();
         }
-        // menu();
-    });
+    );
 }
-cadastrarAluno();
-
 // funcao para excluir aluno 
 function excluirAluno(){
 
@@ -44,7 +61,7 @@ function excluirAluno(){
     } else {
         console.log("Aluno excluido com sucesso!");
     }    
-    menubar();
+    menu();
 });
 
 }
@@ -65,7 +82,11 @@ function listarAlunos(){
                 console.log(
                     aluno.id + " - " +
                     aluno.nome +" - "+
-                    aluno.email
+                    aluno.email+" - "+
+                    aluno.endereco+" - "+
+                    aluno.matricula+" - "+
+                    aluno.curso+" - "+
+                    aluno.Serie
                 );
             });
         }
@@ -98,11 +119,11 @@ function menu(){
 
         console.log("Programa encerrado.");
         conexao.end();
-    } else{
+  } else {
+    console.log("Opção invalida.");
+    menu();
+}
+}
 
-        console.log("Opção invalida.");
-        menu();
-    }
 // Inicia o programa
 menu();
-}
