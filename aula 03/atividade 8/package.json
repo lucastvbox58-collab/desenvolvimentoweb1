@@ -1,0 +1,16 @@
+{
+  "name": "atividade-8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "atividade8.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "mysql8": "^2.17.3"
+  }
+}

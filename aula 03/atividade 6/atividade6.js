@@ -6,25 +6,25 @@ const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "games",
+    database: "colecao",
     port: 3306
 });
-// funcao para cadastrar Jogos
-function cadastrarJogos() {
+// funcao para cadastrar Filmes
+function cadastrarFilmes() {
 
-    const nome = readline.question("Digite o nome do jogo: ");
-    const genero = readline.question("Digite o genero: ");
+    const Titulo = readline.question("Digite o Titulo do filme: ");
+    const Ano = readline.question("Digite o Ano de lançamento do filme : ");
    
 
     const insert = `
-        INSERT INTO jogos
-        (nome, genero)
+        INSERT INTO filmes
+        (Titulo, Ano)
         VALUES (?, ?)
     `;
 
     conexao.query(
         insert,
-        [nome, genero],
+        [Titulo, Ano],
         function (erro, resultado) {
 
             if (erro) {
@@ -34,7 +34,7 @@ function cadastrarJogos() {
 
             } else {
 
-                console.log("jogo cadastrado com sucesso!");
+                console.log("Filme cadastrado com sucesso!");
                 console.log("ID criado:", resultado.insertId);
 
             }
@@ -43,48 +43,47 @@ function cadastrarJogos() {
         }
     );
 }
-// funcao para excluir jogos
-function excluirJogos(){
+// funcao para excluir Filmes
+function excluirFilmes(){
 
-    const id = readline.questionInt("digite o id do jogo");
+    const id = readline.questionInt("digite o id do Filmes");
 
-    const deletar = "DELETE FROM jogos WHERE id = ?";
+    const deletar = "DELETE FROM filmes WHERE id = ?";
 
     conexao.query(deletar, [id], function (erro, resultado){
     if(erro){
-           console.log("Erro ao excluir o jogo."); 
+           console.log("Erro ao excluir o Filme."); 
     } else if (resultado.affectedRows === 0){
-           console.log("jogo não encontrado.");
+           console.log("Filme não encontrado.");
     } else {
-        console.log("Jogo excluido com sucesso!");
+        console.log("Filme excluido com sucesso!");
     }    
     menu();
 });
 
 }
-// Função para listar jogos
+// Função para listar Filmes
+function listarFilmes(){
 
-function listarJogos(){
+    const sql = "SELECT * FROM filmes";
 
-    const sql = "SELECT * FROM jogos";
-
-    conexao.query(sql, function(erro, jogos) {
+    conexao.query(sql, function(erro, filmes) {
 
         if (erro) {
 
-            console.log("Erro ao buscar jogo.");
+            console.log("Erro ao buscar filmes.");
             console.log(erro);
 
         } else {
 
-            console.log("\n--- Jogos ---");
+            console.log("\n--- Filmes ---");
 
-            jogos.forEach(function(jogos){
+            jogos.forEach(function(filmes){
 
                 console.log(
-                    jogos.id + " - " +
-                    jogos.nome+ " - " +
-                    livro.genero
+                    filmes.id + " - " +
+                    filmes.Titulo + " - " +
+                    filmes.Ano
                 );
 
             });
@@ -98,22 +97,22 @@ function listarJogos(){
 function menu(){
 
     console.log("\n===== MENU=====");
-    console.log("1 - Cadastrar Jogos");
-    console.log("2 - Excluir Jogos");
-    console.log("3 - Listar Jogos");
+    console.log("1 - Cadastrar Filmes");
+    console.log("2 - Excluir  Filmes");
+    console.log("3 - Listar  Filmes");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
     
     if (opcao === 1){
 
-        cadastrarJogos();
+        cadastrarFilmes();
     }else if (opcao === 2){
 
-        excluirJogos();
+        excluirFilmes();
     } else if (opcao === 3){
 
-        listarJogos();
+        listarFilmes();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

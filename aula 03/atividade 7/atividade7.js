@@ -6,25 +6,25 @@ const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "games",
+    database: "empresa1",
     port: 3306
 });
-// funcao para cadastrar Jogos
-function cadastrarJogos() {
+// funcao para cadastrar Funcionarios
+function cadastrarFuncionarios() {
 
-    const nome = readline.question("Digite o nome do jogo: ");
-    const genero = readline.question("Digite o genero: ");
+    const nome = readline.question("Digite o nome do Funcionario: ");
+    const cargo = readline.question("Digite o cargo que o funcionario exerce : ");
    
 
     const insert = `
-        INSERT INTO jogos
-        (nome, genero)
+        INSERT INTO Funcionarios
+        (nome, cargo)
         VALUES (?, ?)
     `;
 
     conexao.query(
         insert,
-        [nome, genero],
+        [nome, cargo],
         function (erro, resultado) {
 
             if (erro) {
@@ -34,7 +34,7 @@ function cadastrarJogos() {
 
             } else {
 
-                console.log("jogo cadastrado com sucesso!");
+                console.log("Funcionario cadastrado com sucesso!");
                 console.log("ID criado:", resultado.insertId);
 
             }
@@ -43,48 +43,47 @@ function cadastrarJogos() {
         }
     );
 }
-// funcao para excluir jogos
-function excluirJogos(){
+// funcao para excluir Funcionario
+function excluirFuncionario(){
 
-    const id = readline.questionInt("digite o id do jogo");
+    const id = readline.questionInt("digite o id do Funcionario");
 
-    const deletar = "DELETE FROM jogos WHERE id = ?";
+    const deletar = "DELETE FROM funcionarios WHERE id = ?";
 
     conexao.query(deletar, [id], function (erro, resultado){
     if(erro){
-           console.log("Erro ao excluir o jogo."); 
+           console.log("Erro ao excluir o Funcionario."); 
     } else if (resultado.affectedRows === 0){
-           console.log("jogo não encontrado.");
+           console.log("Funcionario não encontrado.");
     } else {
-        console.log("Jogo excluido com sucesso!");
+        console.log("Funcionario excluido com sucesso!");
     }    
     menu();
 });
 
 }
-// Função para listar jogos
+// Função para listar Funcionarios
+function listarFuncionarios(){
 
-function listarJogos(){
+    const sql = "SELECT * FROM Funcionarios";
 
-    const sql = "SELECT * FROM jogos";
-
-    conexao.query(sql, function(erro, jogos) {
+    conexao.query(sql, function(erro, Funcionarios) {
 
         if (erro) {
 
-            console.log("Erro ao buscar jogo.");
+            console.log("Erro ao buscar o Funcionario solicitado.");
             console.log(erro);
 
         } else {
 
-            console.log("\n--- Jogos ---");
+            console.log("\n--- Funcionarios ---");
 
-            jogos.forEach(function(jogos){
+            jogos.forEach(function(Funcionarios){
 
                 console.log(
-                    jogos.id + " - " +
-                    jogos.nome+ " - " +
-                    livro.genero
+                    Funcionarios.id + " - " +
+                    Funcionarios.nome + " - " +
+                    Funcionarios.cargo
                 );
 
             });
@@ -98,22 +97,22 @@ function listarJogos(){
 function menu(){
 
     console.log("\n===== MENU=====");
-    console.log("1 - Cadastrar Jogos");
-    console.log("2 - Excluir Jogos");
-    console.log("3 - Listar Jogos");
+    console.log("1 - Cadastrar Funcionarios");
+    console.log("2 - Excluir  Funcionarios");
+    console.log("3 - Listar  Funcionarios");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
     
     if (opcao === 1){
 
-        cadastrarJogos();
+        cadastrarFuncionarios();
     }else if (opcao === 2){
 
-        excluirJogos();
+        excluirFuncionario();
     } else if (opcao === 3){
 
-        listarJogos();
+        listarFuncionarios();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

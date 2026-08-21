@@ -6,25 +6,25 @@ const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "games",
+    database: "sistemaSimples",
     port: 3306
 });
-// funcao para cadastrar Jogos
-function cadastrarJogos() {
+// funcao para cadastrar Cursos
+function cadastrarTarefas() {
 
-    const nome = readline.question("Digite o nome do jogo: ");
-    const genero = readline.question("Digite o genero: ");
+    const descricao = readline.question("Digite a descrição da tarefa: ");
+    const responsavel = readline.question("Digite o nome do Responsavel : ");
    
 
     const insert = `
-        INSERT INTO jogos
-        (nome, genero)
+        INSERT INTO Tarefas
+        (descricao, responsavel)
         VALUES (?, ?)
     `;
 
     conexao.query(
         insert,
-        [nome, genero],
+        [descricao, responsavel],
         function (erro, resultado) {
 
             if (erro) {
@@ -34,7 +34,7 @@ function cadastrarJogos() {
 
             } else {
 
-                console.log("jogo cadastrado com sucesso!");
+                console.log("Tarefa cadastrado com sucesso!");
                 console.log("ID criado:", resultado.insertId);
 
             }
@@ -43,48 +43,47 @@ function cadastrarJogos() {
         }
     );
 }
-// funcao para excluir jogos
-function excluirJogos(){
+// funcao para excluir Tarefa
+function excluirTarefas(){
 
-    const id = readline.questionInt("digite o id do jogo");
+    const id = readline.questionInt("digite o id da Tarefa");
 
-    const deletar = "DELETE FROM jogos WHERE id = ?";
+    const deletar = "DELETE FROM Tarefas WHERE id = ?";
 
     conexao.query(deletar, [id], function (erro, resultado){
     if(erro){
-           console.log("Erro ao excluir o jogo."); 
+           console.log("Erro ao excluir o Tarefa."); 
     } else if (resultado.affectedRows === 0){
-           console.log("jogo não encontrado.");
+           console.log("Tarefas não encontrado.");
     } else {
-        console.log("Jogo excluido com sucesso!");
+        console.log("Tarefas excluido com sucesso!");
     }    
     menu();
 });
 
 }
-// Função para listar jogos
+// Função para listar Cursos
+function listarTarefas(){
 
-function listarJogos(){
+    const sql = "SELECT * FROM Tarefas";
 
-    const sql = "SELECT * FROM jogos";
-
-    conexao.query(sql, function(erro, jogos) {
+    conexao.query(sql, function(erro, Tarefas) {
 
         if (erro) {
 
-            console.log("Erro ao buscar jogo.");
+            console.log("Erro ao buscar a Tarefa solicitado.");
             console.log(erro);
 
         } else {
 
-            console.log("\n--- Jogos ---");
+            console.log("\n--- Tarefas ---");
 
-            jogos.forEach(function(jogos){
+            jogos.forEach(function(Tarefas){
 
                 console.log(
-                    jogos.id + " - " +
-                    jogos.nome+ " - " +
-                    livro.genero
+                    Tarefas.id + " - " +
+                    Tarefas.descricao + " - " +
+                    Tarefas.responsavel
                 );
 
             });
@@ -98,22 +97,22 @@ function listarJogos(){
 function menu(){
 
     console.log("\n===== MENU=====");
-    console.log("1 - Cadastrar Jogos");
-    console.log("2 - Excluir Jogos");
-    console.log("3 - Listar Jogos");
+    console.log("1 - Cadastrar Tarefas");
+    console.log("2 - Excluir  Tarefas");
+    console.log("3 - Listar  Tarefas");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
     
     if (opcao === 1){
 
-        cadastrarJogos();
+        cadastrarTarefas();
     }else if (opcao === 2){
 
-        excluirJogos();
+        excluirTarefas();
     } else if (opcao === 3){
 
-        listarJogos();
+        listarTarefas();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

@@ -6,25 +6,25 @@ const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "games",
+    database: "sistemasEventos",
     port: 3306
 });
-// funcao para cadastrar Jogos
-function cadastrarJogos() {
+// funcao para cadastrar eventos
+function cadastrareventos() {
 
-    const nome = readline.question("Digite o nome do jogo: ");
-    const genero = readline.question("Digite o genero: ");
+    const nome = readline.question("Digite o nome do Evento: ");
+    const data = readline.question("Digite a data do Evento: ");
    
 
     const insert = `
-        INSERT INTO jogos
-        (nome, genero)
+        INSERT INTO eventos
+        (nome, data)
         VALUES (?, ?)
     `;
 
     conexao.query(
         insert,
-        [nome, genero],
+        [nome, data],
         function (erro, resultado) {
 
             if (erro) {
@@ -34,7 +34,7 @@ function cadastrarJogos() {
 
             } else {
 
-                console.log("jogo cadastrado com sucesso!");
+                console.log("Evento cadastrado com sucesso!");
                 console.log("ID criado:", resultado.insertId);
 
             }
@@ -43,48 +43,47 @@ function cadastrarJogos() {
         }
     );
 }
-// funcao para excluir jogos
-function excluirJogos(){
+// funcao para excluir Eventos
+function excluireventos(){
 
-    const id = readline.questionInt("digite o id do jogo");
+    const id = readline.questionInt("digite o id do Evento");
 
-    const deletar = "DELETE FROM jogos WHERE id = ?";
+    const deletar = "DELETE FROM eventos WHERE id = ?";
 
     conexao.query(deletar, [id], function (erro, resultado){
     if(erro){
-           console.log("Erro ao excluir o jogo."); 
+           console.log("Erro ao excluir o Evento."); 
     } else if (resultado.affectedRows === 0){
-           console.log("jogo não encontrado.");
+           console.log("Evento não encontrado.");
     } else {
-        console.log("Jogo excluido com sucesso!");
+        console.log("Evento excluido com sucesso!");
     }    
     menu();
 });
 
 }
-// Função para listar jogos
+// Função para listar Eventos
+function listareventos(){
 
-function listarJogos(){
+    const sql = "SELECT * FROM eventos";
 
-    const sql = "SELECT * FROM jogos";
-
-    conexao.query(sql, function(erro, jogos) {
+    conexao.query(sql, function(erro, eventos) {
 
         if (erro) {
 
-            console.log("Erro ao buscar jogo.");
+            console.log("Erro ao buscar o evento solicitado.");
             console.log(erro);
 
         } else {
 
-            console.log("\n--- Jogos ---");
+            console.log("\n--- Eventos ---");
 
-            jogos.forEach(function(jogos){
+            jogos.forEach(function(eventos){
 
                 console.log(
-                    jogos.id + " - " +
-                    jogos.nome+ " - " +
-                    livro.genero
+                    eventos.id + " - " +
+                    eventos.nome + " - " +
+                    eventoss.data
                 );
 
             });
@@ -98,22 +97,22 @@ function listarJogos(){
 function menu(){
 
     console.log("\n===== MENU=====");
-    console.log("1 - Cadastrar Jogos");
-    console.log("2 - Excluir Jogos");
-    console.log("3 - Listar Jogos");
+    console.log("1 - Cadastrar Eventos");
+    console.log("2 - Excluir  Eventos");
+    console.log("3 - Listar  Eventos");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
     
     if (opcao === 1){
 
-        cadastrarJogos();
+        cadastrareventos();
     }else if (opcao === 2){
 
-        excluirJogos();
+        excluireventos();
     } else if (opcao === 3){
 
-        listarJogos();
+        listareventos();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

@@ -6,25 +6,25 @@ const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "games",
+    database: "gerenciamento",
     port: 3306
 });
-// funcao para cadastrar Jogos
-function cadastrarJogos() {
+// funcao para cadastrar Clientes
+function cadastrarClientes() {
 
-    const nome = readline.question("Digite o nome do jogo: ");
-    const genero = readline.question("Digite o genero: ");
+    const nome = readline.question("Digite o nome do Cliente: ");
+    const Telefone = readline.question("Digite o numero de Telefone: ");
    
 
     const insert = `
-        INSERT INTO jogos
-        (nome, genero)
+        INSERT INTO clientes
+        (nome, Telefone)
         VALUES (?, ?)
     `;
 
     conexao.query(
         insert,
-        [nome, genero],
+        [nome, Telefone],
         function (erro, resultado) {
 
             if (erro) {
@@ -34,7 +34,7 @@ function cadastrarJogos() {
 
             } else {
 
-                console.log("jogo cadastrado com sucesso!");
+                console.log("Cliente cadastrado com sucesso!");
                 console.log("ID criado:", resultado.insertId);
 
             }
@@ -43,48 +43,48 @@ function cadastrarJogos() {
         }
     );
 }
-// funcao para excluir jogos
-function excluirJogos(){
+// funcao para excluir Cliente
+function excluirCliente(){
 
-    const id = readline.questionInt("digite o id do jogo");
+    const id = readline.questionInt("digite o id do Cliente");
 
-    const deletar = "DELETE FROM jogos WHERE id = ?";
+    const deletar = "DELETE FROM clientes WHERE id = ?";
 
     conexao.query(deletar, [id], function (erro, resultado){
     if(erro){
-           console.log("Erro ao excluir o jogo."); 
+           console.log("Erro ao excluir o Cliente."); 
     } else if (resultado.affectedRows === 0){
-           console.log("jogo não encontrado.");
+           console.log("Cliente não encontrado.");
     } else {
-        console.log("Jogo excluido com sucesso!");
+        console.log("Cliente excluido com sucesso!");
     }    
     menu();
 });
 
 }
-// Função para listar jogos
+// Função para listar Clientes
 
-function listarJogos(){
+function listarClientes(){
 
-    const sql = "SELECT * FROM jogos";
+    const sql = "SELECT * FROM clientes";
 
-    conexao.query(sql, function(erro, jogos) {
+    conexao.query(sql, function(erro, clientes) {
 
         if (erro) {
 
-            console.log("Erro ao buscar jogo.");
+            console.log("Erro ao buscar Cliente.");
             console.log(erro);
 
         } else {
 
-            console.log("\n--- Jogos ---");
+            console.log("\n--- Clientes ---");
 
-            jogos.forEach(function(jogos){
+            jogos.forEach(function(clientes){
 
                 console.log(
-                    jogos.id + " - " +
-                    jogos.nome+ " - " +
-                    livro.genero
+                    clientes.id + " - " +
+                    clientes.nome + " - " +
+                    clientes.Telefone
                 );
 
             });
@@ -98,22 +98,22 @@ function listarJogos(){
 function menu(){
 
     console.log("\n===== MENU=====");
-    console.log("1 - Cadastrar Jogos");
-    console.log("2 - Excluir Jogos");
-    console.log("3 - Listar Jogos");
+    console.log("1 - Cadastrar Cliente");
+    console.log("2 - Excluir  Cliente");
+    console.log("3 - Listar  Cliente");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
     
     if (opcao === 1){
 
-        cadastrarJogos();
+        cadastrarClientes();
     }else if (opcao === 2){
 
-        excluirJogos();
+        excluirCliente();
     } else if (opcao === 3){
 
-        listarJogos();
+        listarClientes();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

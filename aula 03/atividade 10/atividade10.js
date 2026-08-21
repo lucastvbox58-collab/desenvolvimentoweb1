@@ -6,25 +6,25 @@ const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "games",
+    database: "laboratorio",
     port: 3306
 });
-// funcao para cadastrar Jogos
-function cadastrarJogos() {
+// funcao para cadastrar computadores
+function cadastrarcomputadores() {
 
-    const nome = readline.question("Digite o nome do jogo: ");
-    const genero = readline.question("Digite o genero: ");
+    const patrimonio = readline.question("Digite o numero do patrimonio: ");
+    const localizacao = readline.question("Digite onde esta a localização do patrimonio: ");
    
 
     const insert = `
-        INSERT INTO jogos
-        (nome, genero)
+        INSERT INTO computadores
+        (patrimonio, localizacao)
         VALUES (?, ?)
     `;
 
     conexao.query(
         insert,
-        [nome, genero],
+        [patrimonio, localizacao],
         function (erro, resultado) {
 
             if (erro) {
@@ -34,7 +34,7 @@ function cadastrarJogos() {
 
             } else {
 
-                console.log("jogo cadastrado com sucesso!");
+                console.log("Patrimonio cadastrado com sucesso!");
                 console.log("ID criado:", resultado.insertId);
 
             }
@@ -43,48 +43,47 @@ function cadastrarJogos() {
         }
     );
 }
-// funcao para excluir jogos
-function excluirJogos(){
+// funcao para excluir computadores
+function excluircomputadores(){
 
-    const id = readline.questionInt("digite o id do jogo");
+    const id = readline.questionInt("digite o id do Patrimonio");
 
-    const deletar = "DELETE FROM jogos WHERE id = ?";
+    const deletar = "DELETE FROM computadores WHERE id = ?";
 
     conexao.query(deletar, [id], function (erro, resultado){
     if(erro){
-           console.log("Erro ao excluir o jogo."); 
+           console.log("Erro ao excluir o patrimonio."); 
     } else if (resultado.affectedRows === 0){
-           console.log("jogo não encontrado.");
+           console.log("Patrimonio não encontrado.");
     } else {
-        console.log("Jogo excluido com sucesso!");
+        console.log("Patrimonio excluido com sucesso!");
     }    
     menu();
 });
 
 }
-// Função para listar jogos
+// Função para listar computadores
+function listarcomputadores(){
 
-function listarJogos(){
+    const sql = "SELECT * FROM computadores";
 
-    const sql = "SELECT * FROM jogos";
-
-    conexao.query(sql, function(erro, jogos) {
+    conexao.query(sql, function(erro, computadores) {
 
         if (erro) {
 
-            console.log("Erro ao buscar jogo.");
+            console.log("Erro ao buscar o patrimonio solicitado.");
             console.log(erro);
 
         } else {
 
-            console.log("\n--- Jogos ---");
+            console.log("\n--- Computadores ---");
 
-            jogos.forEach(function(jogos){
+            jogos.forEach(function(Tarefas){
 
                 console.log(
-                    jogos.id + " - " +
-                    jogos.nome+ " - " +
-                    livro.genero
+                    computadores.id + " - " +
+                    computadores.patrimonio + " - " +
+                    computadores.localizacao
                 );
 
             });
@@ -98,22 +97,22 @@ function listarJogos(){
 function menu(){
 
     console.log("\n===== MENU=====");
-    console.log("1 - Cadastrar Jogos");
-    console.log("2 - Excluir Jogos");
-    console.log("3 - Listar Jogos");
+    console.log("1 - Cadastrar Computadores");
+    console.log("2 - Excluir  Computadores");
+    console.log("3 - Listar  Computadores");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
     
     if (opcao === 1){
 
-        cadastrarJogos();
+        cadastrarcomputadores();
     }else if (opcao === 2){
 
-        excluirJogos();
+        excluircomputadores();
     } else if (opcao === 3){
 
-        listarJogos();
+        listarcomputadores();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");
