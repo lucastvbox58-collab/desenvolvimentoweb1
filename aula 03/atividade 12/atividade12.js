@@ -2,10 +2,10 @@ const mysql = require("mysql2");
 const readline = require("readline-sync");
 
 const conexao = mysql.createConnection({
-    host: "localhost",
+    host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "games"
+    database: "3306"
 });
 // CONECTAR AO MYSQL
 conexao.connect(function (erro) {
