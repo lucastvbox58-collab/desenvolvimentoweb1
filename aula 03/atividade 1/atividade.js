@@ -1,15 +1,29 @@
 const mysql = require("mysql2");
 const readline = require("readline-sync");
 
-// conexao com mysql
 const conexao = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"root",
-    database:"cadastro"
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "escola",
+    port: 3306
 });
 
-// funcao para cadastrar aluno
+conexao.connect((erro) => {
+    if (erro) {
+        console.log("Erro ao conectar ao MySQL:");
+        console.log(erro);
+        return;
+    }
+
+    console.log("Conectado ao MySQL!");
+    menu();
+});
+
+
+// ===============================
+// CADASTRAR ALUNO
+// ===============================
 function cadastrarAluno() {
 
     const nome = readline.question("Digite o nome do aluno: ");
@@ -31,99 +45,175 @@ function cadastrarAluno() {
         function (erro, resultado) {
 
             if (erro) {
-
                 console.log("ERRO AO CADASTRAR:");
                 console.log(erro);
-
             } else {
-
                 console.log("Aluno cadastrado com sucesso!");
                 console.log("ID criado:", resultado.insertId);
-
             }
 
             menu();
         }
     );
 }
-// funcao para excluir aluno 
-function excluirAluno(){
 
-    const id = readline.questionInt("digite o id do aluno");
+
+// ===============================
+// ATUALIZAR ALUNO
+// ===============================
+function atualizarAlunos() {
+
+    const id = readline.questionInt("Digite o ID do aluno que deseja atualizar: ");
+
+    const nome = readline.question("Digite o nome do aluno: ");
+    const email = readline.question("Digite o email do aluno: ");
+    const endereco = readline.question("Digite o endereço do aluno: ");
+    const matricula = readline.question("Digite o número de matrícula do aluno: ");
+    const curso = readline.question("Digite o curso do aluno: ");
+    const Serie = readline.question("Digite a série do aluno: ");
+
+    const update = `
+        UPDATE alunos
+        SET nome = ?,
+            email = ?,
+            endereco = ?,
+            matricula = ?,
+            curso = ?,
+            Serie = ?
+        WHERE id = ?
+    `;
+
+    conexao.query(
+        update,
+        [nome, email, endereco, matricula, curso, Serie, id],
+        function (erro, resultado) {
+
+            if (erro) {
+                console.log("Erro ao atualizar o aluno.");
+                console.log(erro);
+
+            } else if (resultado.affectedRows === 0) {
+                console.log("Aluno não encontrado.");
+
+            } else {
+                console.log("Aluno atualizado com sucesso!");
+            }
+
+            menu();
+        }
+    );
+}
+
+
+// ===============================
+// EXCLUIR ALUNO
+// ===============================
+function excluirAluno() {
+
+    const id = readline.questionInt("Digite o ID do aluno: ");
 
     const deletar = "DELETE FROM alunos WHERE id = ?";
 
-    conexao.query(deletar, [id], function (erro, resultado){
-    if(erro){
-           console.log("Erro ao excluir o aluno."); 
-    } else if (resultado.affectedRows === 0){
-           console.log("Aluno não encontrado.");
-    } else {
-        console.log("Aluno excluido com sucesso!");
-    }    
-    menu();
-});
+    conexao.query(
+        deletar,
+        [id],
+        function (erro, resultado) {
 
-}
-// Função para listar alunos
+            if (erro) {
+                console.log("Erro ao excluir o aluno.");
+                console.log(erro);
 
-function listarAlunos(){
+            } else if (resultado.affectedRows === 0) {
+                console.log("Aluno não encontrado.");
 
-    const sql = "SELECT * FROM  alunos";
+            } else {
+                console.log("Aluno excluído com sucesso!");
+            }
 
-    conexao.query(sql,function(erro, alunos) {
-
-        if (erro){
-            console.log("Erro ao buscar alunos.");
-        } else {
-
-            console.log("\n--- Alunos---");
-            alunos.forEach(function (aluno){
-                console.log(
-                    aluno.id + " - " +
-                    aluno.nome +" - "+
-                    aluno.email+" - "+
-                    aluno.endereco+" - "+
-                    aluno.matricula+" - "+
-                    aluno.curso+" - "+
-                    aluno.Serie
-                );
-            });
+            menu();
         }
-        menu();
-    });
-
+    );
 }
 
-// Menu principal
-function menu(){
 
-    console.log("\n===== MENU=====");
+// ===============================
+// LISTAR ALUNOS
+// ===============================
+function listarAlunos() {
+
+    const sql = "SELECT * FROM alunos";
+
+    conexao.query(
+        sql,
+        function (erro, alunos) {
+
+            if (erro) {
+                console.log("Erro ao buscar alunos.");
+                console.log(erro);
+
+            } else {
+
+                console.log("\n--- ALUNOS ---");
+
+                alunos.forEach(function (aluno) {
+
+                    console.log(
+                        aluno.id + " - " +
+                        aluno.nome + " - " +
+                        aluno.email + " - " +
+                        aluno.endereco + " - " +
+                        aluno.matricula + " - " +
+                        aluno.curso + " - " +
+                        aluno.Serie
+                    );
+
+                });
+            }
+
+            menu();
+        }
+    );
+}
+
+
+// ===============================
+// MENU PRINCIPAL
+// ===============================
+function menu() {
+
+    console.log("\n===== MENU =====");
     console.log("1 - Cadastrar aluno");
     console.log("2 - Excluir aluno");
-    console.log("3 - Listar alunos");
+    console.log("3 - Atualizar aluno");
+    console.log("4 - Listar alunos");
     console.log("0 - Sair");
 
-    const opcao = readline.questionInt("Escolha uma opcão:");
-    
-    if (opcao === 1){
+    const opcao = readline.questionInt("Escolha uma opção: ");
+
+    if (opcao === 1) {
 
         cadastrarAluno();
-    }else if (opcao === 2){
+
+    } else if (opcao === 2) {
 
         excluirAluno();
-    } else if (opcao === 3){
+
+    } else if (opcao === 3) {
+
+        atualizarAlunos();
+
+    } else if (opcao === 4) {
 
         listarAlunos();
-    }else if (opcao === 0){
+
+    } else if (opcao === 0) {
 
         console.log("Programa encerrado.");
         conexao.end();
-  } else {
-    console.log("Opção invalida.");
-    menu();
-}
-}
 
-// Inicia o programa
-menu();
+    } else {
+
+        console.log("Opção inválida.");
+        menu();
+    }
+}

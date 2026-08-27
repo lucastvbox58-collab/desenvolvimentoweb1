@@ -44,6 +44,43 @@ function cadastrarProdutos() {
         }
     );
 }
+// update
+function atualizarProdutos() {
+
+    const id = readline.questionInt("Digite o ID do produto que deseja atualizar: ");
+
+    const nome = readline.question("Digite o nome do produto: ");
+    const preco = readline.question("Digite o preço do produto: ");
+    const quantidade = readline.question("Digite a quantidade de produtos: ");
+
+    const update = `
+    UPDATE alunos
+    SET nome = ?,
+        preco = ?,
+        quantidade = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [nome, preco, quantidade, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o produto.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Produto não encontrado.");
+
+        } else {
+            console.log("Produto atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+
 // funcao para excluir produto
 function excluirProdutos(){
 
@@ -76,7 +113,7 @@ function listarProdutos(){
         } else {
 
             console.log("\n--- Produtos---");
-            produtos.forEach(function (Produtos){
+            produtos.forEach(function (produtos){
                 console.log(
                     produtos.id + " - " +
                     produtos.nome +" - "+
@@ -97,6 +134,7 @@ function menu(){
     console.log("1 - Cadastrar Produtos");
     console.log("2 - Excluir Produtos");
     console.log("3 - Listar Produtos");
+    console.log("4 - Atualizar Produtos");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -110,6 +148,9 @@ function menu(){
     } else if (opcao === 3){
 
         listarProdutos();
+    }else if (opcao === 4){
+    
+        atualizarProdutos();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");
