@@ -9,6 +9,40 @@ const conexao = mysql.createConnection({
     database: "colecao",
     port: 3306
 });
+// update
+function atualizarFilme() {
+
+    const id = readline.questionInt("Digite o ID do Filme que deseja atualizar: ");
+    const Titulo = readline.question("Digite o nome do Filme: ");
+    const Ano = readline.question("Digite a Data de lançamento : ");
+
+  const update = `
+    UPDATE filmes
+    SET Titulo = ?,
+    Ano = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [Titulo, Ano, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o Filme.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Filme não encontrado.");
+
+        } else {
+            console.log("Filme atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // funcao para cadastrar Filmes
 function cadastrarFilmes() {
 
@@ -100,6 +134,7 @@ function menu(){
     console.log("1 - Cadastrar Filmes");
     console.log("2 - Excluir  Filmes");
     console.log("3 - Listar  Filmes");
+    console.log("4 - Atualizar  Filmes");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -113,6 +148,9 @@ function menu(){
     } else if (opcao === 3){
 
         listarFilmes();
+    }else if (opcao === 4){
+
+      atualizarFilme();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

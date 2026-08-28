@@ -9,6 +9,40 @@ const conexao = mysql.createConnection({
     database: "gerenciamento",
     port: 3306
 });
+// update
+function atualizarclientes() {
+
+    const id = readline.questionInt("Digite o ID do Cliente que deseja atualizar: ");
+    const nome = readline.question("Digite o nome do Cliente: ");
+    const Telefone = readline.question("Digite o numero de Telefone do cliente : ");
+
+  const update = `
+    UPDATE clientes
+    SET nome = ?,
+    telefone = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [nome, Telefone, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o Cliente.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Cliente não encontrado.");
+
+        } else {
+            console.log("Cliente atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // funcao para cadastrar Clientes
 function cadastrarClientes() {
 
@@ -101,6 +135,7 @@ function menu(){
     console.log("1 - Cadastrar Cliente");
     console.log("2 - Excluir  Cliente");
     console.log("3 - Listar  Cliente");
+    console.log("4 - atualizar  Cliente");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -114,8 +149,10 @@ function menu(){
     } else if (opcao === 3){
 
         listarClientes();
+    }else if (opcao === 4){
+    
+        atualizarclientes();
     }else if (opcao === 0){
-
         console.log("Programa encerrado.");
         conexao.end();
   } else {

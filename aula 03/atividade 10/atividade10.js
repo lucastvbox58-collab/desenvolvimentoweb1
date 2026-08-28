@@ -92,7 +92,40 @@ function listarcomputadores(){
         menu();
     });
 }
+// update
+function atualizarcomputadores() {
 
+    const id = readline.questionInt("Digite o ID do patrimonio que deseja atualizar: ");
+    const patrimonio = readline.question("Digite  numero do patrimonio: ");
+    const localizacao = readline.question("Digite a localização: ");
+
+  const update = `
+    UPDATE computadores
+    SET patrimonio = ?,
+    localizacao = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [patrimonio, localizacao, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o patrimonio.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Patrimonio não encontrado.");
+
+        } else {
+            console.log("Patrimonio atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // Menu principal
 function menu(){
 
@@ -100,6 +133,7 @@ function menu(){
     console.log("1 - Cadastrar Computadores");
     console.log("2 - Excluir  Computadores");
     console.log("3 - Listar  Computadores");
+    console.log("4 - Atualizar  Computadores");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -113,8 +147,11 @@ function menu(){
     } else if (opcao === 3){
 
         listarcomputadores();
-    }else if (opcao === 0){
+    }else if (opcao === 4){
 
+         atualizarcomputadores();
+    }else if (opcao === 0){
+        
         console.log("Programa encerrado.");
         conexao.end();
   } else {

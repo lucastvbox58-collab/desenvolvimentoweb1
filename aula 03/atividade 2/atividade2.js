@@ -1,12 +1,23 @@
 const mysql = require("mysql2");
 const readline = require("readline-sync");
 
-// conexao com mysql
 const conexao = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"root",
-    database:"loja1"
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "loja1",
+    port: 3306
+});
+
+conexao.connect((erro) => {
+    if (erro) {
+        console.log("Erro ao conectar ao MySQL:");
+        console.log(erro);
+        return;
+    }
+
+    console.log("Conectado ao MySQL!");
+    menu();
 });
 
 // funcao para cadastrar aluno
@@ -54,7 +65,7 @@ function atualizarProdutos() {
     const quantidade = readline.question("Digite a quantidade de produtos: ");
 
     const update = `
-    UPDATE alunos
+    UPDATE produtos
     SET nome = ?,
         preco = ?,
         quantidade = ?
@@ -80,7 +91,7 @@ function atualizarProdutos() {
         menu();
     }
 );
-
+}
 // funcao para excluir produto
 function excluirProdutos(){
 
@@ -160,4 +171,4 @@ function menu(){
     menu();
 }
 }
-menu();
+

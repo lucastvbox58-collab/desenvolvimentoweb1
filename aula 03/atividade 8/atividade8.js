@@ -81,9 +81,9 @@ function listarCursos(){
             jogos.forEach(function(Funcionarios){
 
                 console.log(
-                    Funcionarios.id + " - " +
-                    Funcionarios.nome + " - " +
-                    Funcionarios.carga_Horaria
+                    Cursos.id + " - " +
+                    Cursos.nome + " - " +
+                    Cursos.carga_Horaria
                 );
 
             });
@@ -92,7 +92,40 @@ function listarCursos(){
         menu();
     });
 }
+// update
+function atualizarCursos() {
 
+    const id = readline.questionInt("Digite o ID do Curso que deseja atualizar: ");
+    const nome = readline.question("Digite o nome do Curso: ");
+    const carga_horaria = readline.question("Digite a carga_Horaria do curso : ");
+
+  const update = `
+    UPDATE Cursos
+    SET nome = ?,
+    carga_horaria = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [nome, carga_horaria, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o Curso.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Curso não encontrado.");
+
+        } else {
+            console.log("Curso atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // Menu principal
 function menu(){
 
@@ -100,6 +133,7 @@ function menu(){
     console.log("1 - Cadastrar Cursos");
     console.log("2 - Excluir  Cursos");
     console.log("3 - Listar  Cursos");
+    console.log("4 - Atualizar  Cursos");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -113,6 +147,9 @@ function menu(){
     } else if (opcao === 3){
 
         listarCursos();
+    }else if (opcao === 4){
+    
+       atualizarCursos();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

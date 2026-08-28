@@ -92,7 +92,40 @@ function listareventos(){
         menu();
     });
 }
+ // update
+function atualizareventos() {
 
+    const id = readline.questionInt("Digite o ID do eventos que deseja atualizar: ");
+    const nome = readline.question("Digite  nome do evento: ");
+    const data = readline.question("Digite a data: ");
+
+  const update = `
+    UPDATE eventos
+    SET nome = ?,
+    data = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [nome, data, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o evento.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("evento não encontrado.");
+
+        } else {
+            console.log("evento atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // Menu principal
 function menu(){
 
@@ -100,6 +133,7 @@ function menu(){
     console.log("1 - Cadastrar Eventos");
     console.log("2 - Excluir  Eventos");
     console.log("3 - Listar  Eventos");
+    console.log("4 - Atualizar  Eventos");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -113,8 +147,10 @@ function menu(){
     } else if (opcao === 3){
 
         listareventos();
-    }else if (opcao === 0){
+    }else if (opcao === 4){
 
+       atualizareventos();
+    }else if (opcao === 0){
         console.log("Programa encerrado.");
         conexao.end();
   } else {

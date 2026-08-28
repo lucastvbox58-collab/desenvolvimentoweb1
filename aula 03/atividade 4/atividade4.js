@@ -9,6 +9,40 @@ const conexao = mysql.createConnection({
     database: "games",
     port: 3306
 });
+// update
+function atualizarJogos() {
+
+    const id = readline.questionInt("Digite o ID do Jogo que deseja atualizar: ");
+    const nome = readline.question("Digite o Nome do Jogo: ");
+    const genero = readline.question("Digite o genero do jogo : ");
+
+  const update = `
+    UPDATE jogos
+    SET nome = ?,
+        genero = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [nome, genero, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o Jogo.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Jogo não encontrado.");
+
+        } else {
+            console.log("Jogo atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // funcao para cadastrar Jogos
 function cadastrarJogos() {
 
@@ -84,7 +118,7 @@ function listarJogos(){
                 console.log(
                     jogos.id + " - " +
                     jogos.nome+ " - " +
-                    livro.genero
+                    jogos.genero
                 );
 
             });
@@ -101,6 +135,7 @@ function menu(){
     console.log("1 - Cadastrar Jogos");
     console.log("2 - Excluir Jogos");
     console.log("3 - Listar Jogos");
+    console.log("4 - Atualizar Jogos");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -114,6 +149,9 @@ function menu(){
     } else if (opcao === 3){
 
         listarJogos();
+    }else if (opcao === 4){
+    
+       atualizarJogos();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");

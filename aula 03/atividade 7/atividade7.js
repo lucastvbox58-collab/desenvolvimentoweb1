@@ -92,7 +92,40 @@ function listarFuncionarios(){
         menu();
     });
 }
+// update
+function atualizarFuncionarios() {
 
+    const id = readline.questionInt("Digite o ID do Funcionario que deseja atualizar: ");
+    const nome = readline.question("Digite o nome do Funcionario: ");
+    const cargo = readline.question("Digite o cargo do Funcionario : ");
+
+  const update = `
+    UPDATE Funcionarios
+    SET nome = ?,
+    cargo = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [nome, cargo, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o Funcionario.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Funcionario não encontrado.");
+
+        } else {
+            console.log("Funcionario atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // Menu principal
 function menu(){
 
@@ -100,6 +133,7 @@ function menu(){
     console.log("1 - Cadastrar Funcionarios");
     console.log("2 - Excluir  Funcionarios");
     console.log("3 - Listar  Funcionarios");
+    console.log("4 - Atualizar  Funcionarios");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcão:");
@@ -113,6 +147,9 @@ function menu(){
     } else if (opcao === 3){
 
         listarFuncionarios();
+    }else if (opcao === 4){
+    
+        atualizarFuncionarios();
     }else if (opcao === 0){
 
         console.log("Programa encerrado.");
