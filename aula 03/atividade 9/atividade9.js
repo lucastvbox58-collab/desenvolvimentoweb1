@@ -9,13 +9,21 @@ const conexao = mysql.createConnection({
     database: "sistemaSimples",
     port: 3306
 });
-// funcao para cadastrar Cursos
+// funcao para cadastrar tarefas
 function cadastrarTarefas() {
 
-    const descricao = readline.question("Digite a descrição da tarefa: ");
-    const responsavel = readline.question("Digite o nome do Responsavel : ");
-   
-
+    let descricao = readline.question("Digite a descrição da tarefa: ");
+    // nao aceita descricao vazia!!
+    while (descricao.trim() == ""){
+    console.log(" A descricao nao pode ficar vazia !:");
+    descricao = readline.question("Descreva a tarefa!!:")
+    }
+    let  responsavel = readline.question("Digite o nome do Responsavel : ");
+   // nao aceita o nome do responsavel estar vazio
+   while(responsavel.trim() == ""){
+    console.log("para cadastrar e nesserario ter um responsavel pela função!:")
+   responsavel = readline.question("Insira um responsavel:")
+   }
     const insert = `
         INSERT INTO Tarefas
         (descricao, responsavel)
@@ -46,7 +54,7 @@ function cadastrarTarefas() {
 // funcao para excluir Tarefa
 function excluirTarefas(){
 
-    const id = readline.questionInt("digite o id da Tarefa");
+    const id = readline.questionInt("digite o id da Tarefa que desejas Excluir:");
 
     const deletar = "DELETE FROM Tarefas WHERE id = ?";
 
@@ -54,9 +62,9 @@ function excluirTarefas(){
     if(erro){
            console.log("Erro ao excluir o Tarefa."); 
     } else if (resultado.affectedRows === 0){
-           console.log("Tarefas não encontrado.");
+           console.log("Tarefa não encontrado.");
     } else {
-        console.log("Tarefas excluido com sucesso!");
+        console.log("Tarefa excluido com sucesso!");
     }    
     menu();
 });

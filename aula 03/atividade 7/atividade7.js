@@ -43,25 +43,66 @@ function cadastrarFuncionarios() {
         }
     );
 }
-// funcao para excluir Funcionario
-function excluirFuncionario(){
+function excluirfuncionarios() {
 
-    const id = readline.questionInt("digite o id do Funcionario");
+    const id = readline.questionInt("Digite o ID do Funcionario: ");
 
-    const deletar = "DELETE FROM funcionarios WHERE id = ?";
+    // Primeiro busca o patrimônio
+    const buscar = "SELECT * FROM funcionarios WHERE id = ?";
 
-    conexao.query(deletar, [id], function (erro, resultado){
-    if(erro){
-           console.log("Erro ao excluir o Funcionario."); 
-    } else if (resultado.affectedRows === 0){
-           console.log("Funcionario não encontrado.");
-    } else {
-        console.log("Funcionario excluido com sucesso!");
-    }    
-    menu();
-});
+    conexao.query(buscar, [id], function (erro, resultado) {
 
+        if (erro) {
+            console.log("Erro ao buscar o funcionario.");
+            console.log(erro);
+            menu();
+            return;
+        }
+
+        // Verifica se o funcionario existe
+        if (resultado.length === 0) {
+            console.log("funcionario não encontrado.");
+            menu();
+            return;
+        }
+
+      // Pega os dados encontrados
+    const funcionario = resultado[0];
+
+        console.log("\n===== Funcionario ENCONTRADO =====");
+        console.log("ID: " + funcionario.id);
+        console.log("nome: " + funcionario.nome);
+        console.log("cargo: " + funcionario.cargo);
+        console.log("================================");
+
+        // Pergunta se deseja excluir
+        const confirmar = readline.question(
+            "\nDeseja realmente excluir este Funcionario? (S/N): "
+        );
+
+        if (confirmar.toUpperCase() !== "S") {
+            console.log("Exclusao cancelada.");
+            menu();
+            return;
+        }
+
+        // Exclui o patrimônio
+        const deletar = "DELETE FROM funcionarios WHERE id = ?";
+
+        conexao.query(deletar, [id], function (erro, resultado) {
+
+            if (erro) {
+                console.log("Erro ao excluir o funcionario.");
+                console.log(erro);
+            } else {
+                console.log("Funcionario excluido com sucesso!");
+            }
+
+            menu();
+        });
+    });
 }
+
 // Função para listar Funcionarios
 function listarFuncionarios(){
 
@@ -143,7 +184,7 @@ function menu(){
         cadastrarFuncionarios();
     }else if (opcao === 2){
 
-        excluirFuncionario();
+        excluirfuncionarios();
     } else if (opcao === 3){
 
         listarFuncionarios();

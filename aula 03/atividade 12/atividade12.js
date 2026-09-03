@@ -5,7 +5,9 @@ const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "3306"
+    database: "sistemasVeiculos",
+    port : 3306
+
 });
 // CONECTAR AO MYSQL
 conexao.connect(function (erro) {
@@ -121,6 +123,40 @@ function listarveiculos() {
         }
     );
 }
+// update
+function atualizarveiculos() {
+
+    const id = readline.questionInt("Digite o ID do eventos que deseja atualizar: ");
+    const modelo = readline.question("Digite  Modelo do veiculo: ");
+    const placa = readline.question("Digite a Placa: ");
+
+  const update = `
+    UPDATE veiculos
+    SET modelo = ?,
+    placa = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [modelo, placa, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o Veiculo!.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("Veiculo não encontrado.");
+
+        } else {
+            console.log("Veiculo atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 // MENU PRINCIPAL
 function menu() {
 
@@ -128,6 +164,7 @@ function menu() {
     console.log("1 - Cadastrar Veiculos");
     console.log("2 - Excluir Veiculos");
     console.log("3 - Listar Veiculos");
+    console.log("4 - Atualizar Veiculos");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcao: ");
@@ -144,8 +181,11 @@ function menu() {
 
         listarveiculos();
 
-    } else if (opcao === 0) {
+    } else if (opcao === 4) {
+    
+         listaratualizar();
 
+    } else if (opcao === 0) {
         console.log("Programa encerrado.");
         conexao.end();
 

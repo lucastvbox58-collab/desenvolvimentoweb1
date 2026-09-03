@@ -43,25 +43,67 @@ function cadastrarcomputadores() {
         }
     );
 }
-// funcao para excluir computadores
-function excluircomputadores(){
+// função para excluir computadores
+function excluircomputadores() {
 
-    const id = readline.questionInt("digite o id do Patrimonio");
+    const id = readline.questionInt("Digite o ID do Patrimonio: ");
 
-    const deletar = "DELETE FROM computadores WHERE id = ?";
+    // Primeiro busca o patrimônio
+    const buscar = "SELECT * FROM computadores WHERE id = ?";
 
-    conexao.query(deletar, [id], function (erro, resultado){
-    if(erro){
-           console.log("Erro ao excluir o patrimonio."); 
-    } else if (resultado.affectedRows === 0){
-           console.log("Patrimonio não encontrado.");
-    } else {
-        console.log("Patrimonio excluido com sucesso!");
-    }    
-    menu();
-});
+    conexao.query(buscar, [id], function (erro, resultado) {
 
+        if (erro) {
+            console.log("Erro ao buscar o patrimonio.");
+            console.log(erro);
+            menu();
+            return;
+        }
+
+        // Verifica se o patrimônio existe
+        if (resultado.length === 0) {
+            console.log("Patrimonio não encontrado.");
+            menu();
+            return;
+        }
+
+      // Pega os dados encontrados
+const patrimonio = resultado[0];
+
+        console.log("\n===== PATRIMONIO ENCONTRADO =====");
+        console.log("ID: " + patrimonio.id);
+        console.log("Patrimonio: " + patrimonio.patrimonio);
+        console.log("Localizacao: " + patrimonio.localizacao);
+        console.log("================================");
+
+        // Pergunta se deseja excluir
+        const confirmar = readline.question(
+            "\nDeseja realmente excluir este patrimonio? (S/N): "
+        );
+
+        if (confirmar.toUpperCase() !== "S") {
+            console.log("Exclusao cancelada.");
+            menu();
+            return;
+        }
+
+        // Exclui o patrimônio
+        const deletar = "DELETE FROM computadores WHERE id = ?";
+
+        conexao.query(deletar, [id], function (erro, resultado) {
+
+            if (erro) {
+                console.log("Erro ao excluir o patrimonio.");
+                console.log(erro);
+            } else {
+                console.log("Patrimonio excluido com sucesso!");
+            }
+
+            menu();
+        });
+    });
 }
+
 // Função para listar computadores
 function listarcomputadores(){
 
@@ -78,7 +120,7 @@ function listarcomputadores(){
 
             console.log("\n--- Computadores ---");
 
-            jogos.forEach(function(Tarefas){
+            computadores.forEach(function(computadores){
 
                 console.log(
                     computadores.id + " - " +
