@@ -4,11 +4,23 @@ const readline = require("readline-sync");
 // ===============================
 // CONEXÃO COM O MYSQL
 // ===============================
+
 const conexao = mysql.createConnection({
     host: "127.0.0.1",
     user: "root",
     password: "root",
-    database: "cadastro"
+    database: "cadastro",
+    port: 3306
+});
+
+conexao.connect(function(erro) {
+    if (erro) {
+        console.log("Erro ao conectar com o MySQL:");
+        console.log(erro);
+        return;
+    }
+
+    console.log("Conectado ao MySQL com sucesso!");
 });
 
 // Conecta ao banco
@@ -39,7 +51,7 @@ function cadastrarAluno() {
 
     const insert = `
         INSERT INTO alunos 
-        (nome, email, endereco, matricula, curso, serie) 
+        (nome, email, endereco, matricula, curso, serie, ) 
         VALUES (?, ?, ?, ?, ?, ?)
     `;
 
@@ -180,7 +192,50 @@ function listarAlunos() {
         menu();
     });
 }
+// update
+function atualizarAlunos() {
 
+    console.log("Dgite as informaçoes que deseja atualizar")
+
+    const id = readline.questionInt("Digite o ID do aluno que deseja atualizar: ");
+    const nome = readline.question("Digite  nome do aluno: ");
+    const email = readline.question("Digite a data: ");
+    const endereco = readline.question("Insira o endereço:");
+    const matricula = readline.question("Digite a matricula:");
+    const curso = readline.question("Insira o curso:");
+    const serie = readline.question("Digite a serie:");
+
+  const update = `
+    UPDATE alunos
+    SET nome = ?,
+    email = ?,
+    endereco = ?,
+    matricula = ?,
+    curso = ?,
+    serie = ?
+    WHERE id = ?
+`;
+
+  conexao.query(
+    update,
+    [nome, email, endereco, matricula, curso, serie, id],
+    function (erro, resultado) {
+
+        if (erro) {
+            console.log("Erro ao atualizar o aluno.");
+            console.log(erro);
+
+        } else if (resultado.affectedRows === 0) {
+            console.log("aluno não encontrado.");
+
+        } else {
+            console.log("aluno atualizado com sucesso!");
+        }
+
+        menu();
+    }
+);
+}
 
 // ===============================
 // MENU PRINCIPAL
@@ -194,6 +249,7 @@ function menu() {
     console.log("1 - Cadastrar aluno");
     console.log("2 - Excluir aluno");
     console.log("3 - Listar alunos");
+    console.log("4 - Atualizar alunos");
     console.log("0 - Sair");
 
     const opcao = readline.questionInt("Escolha uma opcao: ");
@@ -209,9 +265,11 @@ function menu() {
     } else if (opcao === 3) {
 
         listarAlunos();
-
+    
+    } else if (opcao === 4) {
+        
+        atualizarAlunos();
     } else if (opcao === 0) {
-
         console.log("Programa encerrado.");
 
         conexao.end(function (erro) {
