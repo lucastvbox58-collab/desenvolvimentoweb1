@@ -135,7 +135,7 @@ function listarcomputadores(){
     });
 }
 // update
-function atualizarcomputadores() {
+function atualizar_computadores() {
 
     const id = readline.questionInt("Digite o ID do patrimonio que deseja atualizar: ");
     const patrimonio = readline.question("Digite  numero do patrimonio: ");
