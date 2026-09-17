@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Referências</title>
+
+    <style>
+
+        /* CONFIGURAÇÕES GERAIS */
+
+        body {
+            background-color: rgb(117, 117, 117);
+            color: rgba(255, 255, 255, 0.767);
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+
+        /* CABEÇALHO */
+
+        .cabecalho {
+            width: 100%;
+            background-color: rgb(55, 55, 55);
+            padding: 25px 0;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .cabecalho h1 {
+            margin: 0;
+            color: rgb(251, 255, 0);
+            font-size: 42px;
+        }
+
+        .cabecalho h3 {
+            margin: 10px auto 0;
+            color: rgba(255, 255, 255, 0.712);
+            font-size: 24px;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+
+        /* CONTAINERS */
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+
+            background-color: rgb(55, 55, 55);
+
+            padding: 30px;
+            margin-bottom: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .container h1 {
+            color: rgba(251, 255, 0, 0.712);
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container h2 {
+            color: rgba(251, 255, 0, 0.712);
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+
+        /* CARDS */
+
+        .card {
+            background-color: rgb(70, 70, 70);
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* TEXTOS */
+
+        p {
+            color: white;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #fffb00;
+        }
+
+
+        /* LINKS DAS REFERÊNCIAS */
+
+        .card a {
+            color: #04c7f8;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+
+        /* MENU */
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-container {
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+
+        .nav-container a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+
+        /* CORES DO MENU */
+
+        .inicio {
+            background-color: red;
+        }
+
+        .seguranca {
+            background-color: red;
+        }
+
+        .referencias {
+            background-color: red;
+        }
+
+
+        /* PÁGINA INÍCIO */
+
+        .pagina-inicio .inicio {
+            background-color: green;
+        }
+
+        .pagina-inicio .seguranca {
+            background-color: rgb(255, 255, 0);
+        }
+
+        .pagina-inicio .referencias {
+            background-color: red;
+        }
+
+
+        /* PÁGINA SEGURANÇA */
+
+        .pagina-seguranca .inicio {
+            background-color: red;
+        }
+
+        .pagina-seguranca .seguranca {
+            background-color: green;
+        }
+
+        .pagina-seguranca .referencias {
+            background-color: yellow;
+        }
+
+
+        /* PÁGINA REFERÊNCIAS */
+
+        .pagina-referencias .inicio {
+            background-color: yellow;
+        }
+
+        .pagina-referencias .seguranca {
+            background-color: red;
+        }
+
+        .pagina-referencias .referencias {
+            background-color: green;
+        }
+
+
+        /* RODAPÉ */
+
+        footer {
+            margin-top: 20px;
+            padding: 20px;
+
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="pagina-referencias">
+
+
+    <!-- CABEÇALHO -->
+
+    <header class="cabecalho">
+
+        <h1>Referências</h1>
+
+        <h3>
+            Nesta página te mostramos onde estão as referências
+            que nos mostram como cuidar de si e dos demais no trânsito.
+        </h3>
+
+    </header>
+
+
+    <!-- PRIMEIRA REFERÊNCIA -->
+
+    <div class="container">
+
+        <h1>Estatística de Acidentes de Trânsito</h1>
+
+        <h2>
+            Estudo aponta que mais de 50% dos acidentes de trânsito
+            são causados por falhas humanas
+        </h2>
+
+        <div class="card">
+
+            <p>
+                <strong>O dado encontrado:</strong>
+                53,7% dos acidentes nas rodovias federais são causados
+                pela negligência ou imprudência dos motoristas
+                (sendo 30,3% por desrespeito às leis de trânsito
+                e 23,4% por falta de atenção).
+            </p>
+
+            <p>
+                <strong>O ano da informação:</strong>
+                2018 (com dados de estudo cobrindo o período
+                entre 2007 e 2016).
+            </p>
+
+            <p>
+                <strong>A instituição responsável pela publicação:</strong>
+                Ministério dos Transportes, Portos e Aviação.
+            </p>
+
+            <p>
+                <strong>Referência:</strong>
+
+                <a
+                    href="https://www.gov.br/transportes/pt-br/assuntos/noticias/ultimas-noticias/estudo-aponta-que-mais-de-50-dos-acidentes-de-transito-sao-causados-por-falhas-humanas"
+                    target="_blank"
+                >
+                    Acesse a matéria oficial do Ministério dos Transportes
+                </a>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEGUNDA REFERÊNCIA -->
+
+    <div class="container">
+
+        <h1>Estatística de Óbitos no Trânsito</h1>
+
+        <div class="card">
+
+            <p>
+                <strong>O dado encontrado:</strong>
+                O Brasil atingiu a marca de 37,1 mil óbitos por acidentes
+                de trânsito, configurando o maior índice registrado
+                desde 2016 e impulsionado pelo crescimento da frota
+                de motocicletas.
+            </p>
+
+            <p>
+                <strong>O ano da informação:</strong>
+                2026 (referente a dados consolidados de 2024).
+            </p>
+
+            <p>
+                <strong>A instituição responsável pela publicação:</strong>
+                Atlas da Violência.
+            </p>
+
+            <p>
+                <strong>Referência:</strong>
+
+                <a
+                    href="https://jc.uol.com.br/colunas/mobilidade/2026/05/26/brasil-registra-recorde-de-mortes-no-transito-mais-uma-vez-atlas-da-violencia-aponta-maior-indice-desde-2016.html"
+                    target="_blank"
+                >
+                    Brasil registra recorde de mortes no trânsito
+                    mais uma vez - JC UOL
+                </a>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- TERCEIRA REFERÊNCIA -->
+
+    <div class="container">
+
+        <h1>Retrato do Motociclista Brasileiro</h1>
+
+        <div class="card">
+
+            <p>
+                <strong>O dado encontrado:</strong>
+                O custo total de propriedade de uma motocicleta pode
+                ser até 50% menor em comparação a um carro, considerando
+                despesas com combustíveis, manutenção, seguro e impostos.
+            </p>
+
+            <p>
+                <strong>O ano da informação:</strong>
+                2026.
+            </p>
+
+            <p>
+                <strong>A instituição responsável pela publicação:</strong>
+                Mundo Automotor (Artigo:
+                <em>Retrato do Motociclista Brasileiro em 2026</em>).
+            </p>
+
+            <p>
+                <strong>Referência:</strong>
+
+                <a
+                    href="https://motociclismoonline.com.br/especiais/o-retrato-do-motociclista-brasileiro-em-2026-sim-a-motocicleta/"
+                    target="_blank"
+                >
+                    Acesse o especial Sim à Motocicleta
+                </a>.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <nav>
+
+        <div class="nav-container inicio">
+
+            <a href="index.html">
+                Início
+            </a>
+
+        </div>
+
+
+        <div class="nav-container seguranca">
+
+            <a href="seguranca.html">
+                Segurança
+            </a>
+
+        </div>
+
+
+        <div class="nav-container referencias">
+
+            <a href="referencias.html">
+                Referências
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        LucasMeireles@gmail.com / EliasSantos@gmail.com - 10/09/2026 / Para mais informações acesse ja www.htpps/É_nois_guri_os_baguá.com
+
+
+    </footer>
+
+
+</body>
+
+</html>
+

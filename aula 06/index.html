@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Semana do Trânsito</title>
+
+    <style>
+
+        body {
+            background-color: rgb(117, 117, 117);
+            color: rgba(255, 255, 255, 0.767);
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* CABEÇALHO */
+
+        .cabecalho {
+            width: 100%;
+            background-color: rgb(55, 55, 55);
+            padding: 25px 0;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .cabecalho h1 {
+            margin: 0;
+            color: white;
+            font-size: 42px;
+        }
+
+        .cabecalho h2 {
+            margin: 10px 0 0;
+            color: rgba(251, 255, 0, 0.712);
+            font-size: 30px;
+        }
+
+        /* TÍTULOS */
+
+        h1 {
+            color: rgba(251, 255, 0, 0.712);
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            color: rgba(251, 255, 0, 0.712);
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            background-color: rgb(55, 55, 55);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        /* TEXTOS */
+
+        p {
+            color: white;
+            font-size: 20px;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* FAIXA AMARELA */
+
+        .faixa {
+            width: 100%;
+            height: 6px;
+
+            background: repeating-linear-gradient(
+                to right,
+                #fffb00 0px,
+                #e7e6af 70px,
+                transparent 70px,
+                transparent 105px
+            );
+
+            margin-bottom: 25px;
+        }
+
+        /* MENU */
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .nav-container {
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+
+        .nav-container a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* CORES DO MENU */
+
+        .inicio {
+            background-color: red;
+        }
+
+        .seguranca {
+            background-color: red;
+        }
+
+        .referencias {
+            background-color: red;
+        }
+
+        /* PÁGINA INÍCIO */
+
+        .pagina-inicio .inicio {
+            background-color: green;
+        }
+
+        .pagina-inicio .seguranca {
+            background-color: rgb(255, 255, 0);
+        }
+
+        .pagina-inicio .referencias {
+            background-color: red;
+        }
+
+        /* PÁGINA SEGURANÇA */
+
+        .pagina-seguranca .inicio {
+            background-color: red;
+        }
+
+        .pagina-seguranca .seguranca {
+            background-color: green;
+        }
+
+        .pagina-seguranca .referencias {
+            background-color: yellow;
+        }
+
+        /* PÁGINA REFERÊNCIAS */
+
+        .pagina-referencias .inicio {
+            background-color: yellow;
+        }
+
+        .pagina-referencias .seguranca {
+            background-color: red;
+        }
+
+        .pagina-referencias .referencias {
+            background-color: green;
+        }
+
+        /* CARDS */
+
+        .icones {
+            width: 90%;
+            max-width: 1200px;
+
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            margin-bottom: 40px;
+        }
+
+        .card-icone {
+            width: 190px;
+            min-height: 300px;
+
+            background-color: rgb(55, 55, 55);
+
+            border-radius: 15px;
+            padding: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .card-icone:hover {
+            transform: translateY(-8px);
+            background-color: rgb(70, 70, 70);
+        }
+
+        .card-icone .emoji {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .card-icone h3 {
+            color: #fffb00;
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .card-icone p {
+            color: white;
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* LINKS */
+
+        a {
+            color: #04c7f8;
+            font-size: 25px;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+
+    </style>
+
+<head>
+
+<body class="pagina-inicio">
+
+    <!-- CABEÇALHO -->
+
+    <header class="cabecalho">
+
+        <h1>Semana do Trânsito</h1>
+
+        <h2>Uma pagina dedicada a mostrar como,porque e quando será necessario ter cuidado e segurança no transito</h2>
+
+    </header>
+
+
+    <!-- CARDS -->
+
+    <div class="icones">
+
+        <!-- SEMÁFORO -->
+
+        <div class="card-icone">
+
+            <div class="emoji">🚦</div>
+
+            <h3>Semáforo</h3>
+
+            <p>
+                O semáforo organiza o trânsito e controla a passagem
+                de veículos e pedestres. Respeitar suas cores ajuda
+                a evitar acidentes.
+            </p>
+
+        </div>
+
+
+        <!-- VEÍCULOS -->
+
+        <div class="card-icone">
+
+            <div class="emoji">🚗</div>
+
+            <h3>Veículos</h3>
+
+            <p>
+                Os motoristas devem respeitar as leis de trânsito,
+                os limites de velocidade e manter atenção durante
+                todo o trajeto.
+            </p>
+
+        </div>
+
+
+        <!-- PLACA DE PARE -->
+
+        <div class="card-icone">
+
+            <div class="emoji">🛑</div>
+
+            <h3>Placa de Pare</h3>
+
+            <p>
+                A placa de Pare indica que o motorista deve parar
+                completamente antes de continuar, observando
+                se a via está segura.
+            </p>
+
+        </div>
+
+
+        <!-- PEDESTRES -->
+
+        <div class="card-icone">
+
+            <div class="emoji">🚸</div>
+
+            <h3>Pedestres</h3>
+
+            <p>
+                Os pedestres também fazem parte do trânsito.
+                É importante respeitar a faixa de pedestres e
+                dar preferência quando necessário.
+            </p>
+
+        </div>
+
+
+        <!-- CICLISTAS -->
+
+        <div class="card-icone">
+
+            <div class="emoji">🚲</div>
+
+            <h3>Ciclistas</h3>
+
+            <p>
+                Os ciclistas devem ser respeitados pelos demais
+                usuários da via. Manter uma distância segura ajuda
+                a garantir sua segurança.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <div class="container">
+
+        <div class="faixa"></div>
+
+        <p>
+            A segurança no trânsito é fundamental para proteger a vida
+            de motoristas, motociclistas, ciclistas e pedestres.
+
+            Respeitar as leis de trânsito, obedecer aos limites de
+            velocidade, utilizar o cinto de segurança, não dirigir sob
+            o efeito de álcool e manter a atenção durante o trajeto são
+            atitudes que ajudam a prevenir acidentes e salvar vidas.
+
+            Além disso, o respeito entre todos os usuários das vias é
+            essencial. Dar preferência aos pedestres, manter uma
+            distância segura dos outros veículos e respeitar
+            motociclistas e ciclistas contribuem para um trânsito mais
+            organizado e seguro.
+        </p>
+
+
+        <!-- MENU -->
+
+        <nav>
+
+            <div class="nav-container inicio">
+
+                <a href="index.html">Início</a>
+
+            </div>
+
+            <div class="nav-container seguranca">
+
+                <a href="seguranca.html">Segurança</a>
+
+            </div>
+
+            <div class="nav-container referencias">
+
+                <a href="referencias.html">Referências</a>
+
+            </div>
+
+        </nav>
+
+    </div>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        Lucas Meireles - 10/09/2026
+
+    </footer>
+
+</body>
+
+</html>
+```
