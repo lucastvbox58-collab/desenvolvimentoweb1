@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento Médico</title>
+</head>
+<body>
+    <form method="post" action=""onsubmit="alert('Cadastro realizado com Sucesso!')">
+        <h2>Agendamento de pacientes</h2>
+        <h4>insira seus dados para se  cadastrar no atendimento</h4>
+
+        <label>Insira seu nome completo</label><br>
+        <input type="text" name="login" placeholder="Insara seu nome completo" required><br><br>
+        
+        <label>Insira seu email</label><br>
+        <input type="email" name="email"placeholder="Insira seu e-mail" required><br><br>
+
+        <p>Data de Nascimento</p>
+        <input type="date" name="nascimento"><br><br>
+         
+        <label>Escolha o horário para atendimento:</label>
+        <br><br>
+         <input type="time" name="horario" min="08:00" max="18:00">
+         <p>Qual e o Tipo de atendimento desejado?</p>
+         <input type="radio"
+                  id="Consulta de rotina"
+                  name="Atendimento"
+                  value="Consulta de rotina"
+                  required>
+         <label for="Consulta de rotina">Consulta de rotina</label>
+         <br>
+         <input type="radio"
+                  id="Retorno"
+                  name="Atendimento"
+                  value="Retorno"
+                  required>
+         <label for="Retorno">Retorno</label>
+         <br>
+        <input type="radio"
+                  id="Atendimento prioritário"
+                  name="Atendimento"
+                  value="Atendimento prioritário"
+                  required>
+         <label for="Atendimento prioritário">Atendimento prioritário</label>
+         <br><br>
+        <label>Selecione sua cor preferida: </label>
+        <input type="color" name="favcor" value="0000FF">
+        <br> <br> <br>
+
+        <label>Insira um comentario ou observação sobre o cadastro</label><br>
+        <textarea></textarea><br><br>
+
+         <label>Anexar exames</label> <br>
+        <input type="file" name="arquivos"><br> <br>
+
+          <input type="range" name="nivel-de-dor" min="0" max="10" value="5" oninput="nivelAtual.value = this.value">
+        Muita dor <br><br>
+        Nível de dor selecionado: <output id="nivelAtual">5</output>
+        <br> <br>
+
+        <input type="button" value="Clique aqui" onclick="alert('Obrigado por participar da pesquisa!')">
+        <br><br>
+         <input type="submit">
+    </form>
+</body>
+</html>

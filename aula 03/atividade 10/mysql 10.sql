@@ -7,4 +7,4 @@ CREATE TABLE if not exists computadores(
  localizacao VARCHAR(100) 
  );
  
- select * from computadores
+ select * from  computadores

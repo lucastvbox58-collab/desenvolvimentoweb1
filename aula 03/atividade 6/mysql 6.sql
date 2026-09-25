@@ -1,9 +1,10 @@
 create database if not exists colecao;
 use colecao;
 
-CREATE TABLE filmes ( 
+CREATE TABLE if not exists filmes ( 
 id INT AUTO_INCREMENT PRIMARY KEY,
-titulo VARCHAR(100),
-ano INT );
+Titulo VARCHAR(100),
+Ano INT );
  
- select * from filmes
+SELECT * FROM filmes
+ORDER BY Titulo ASC;
