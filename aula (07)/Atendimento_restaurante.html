@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Atendimento  </title>
+</head>
+<body>
+    <form method="post" action=""onsubmit="alert('Cadastro realizado com Sucesso!')">
+        <h2>Avaliar atendimento Do Restaurante EL Fino</h2>
+        <h4>insira seus dados para avaliar o atendimento</h4>
+
+        <label>Insira seu nome completo</label><br>
+        <input type="text" name="login" placeholder="Insara seu nome completo" required><br><br>
+
+        <p>Insira a data de atendimento</p>
+        <input type="date" name="nascimento"><br><br>
+         
+        <label>Escolha o horário no qual atendido:</label>
+        <br><br>
+         <input type="time" name="horario" min="08:00" max="18:00">
+        <br>
+         <p>Qual foi a forma de  atendimento?</p>
+         <input type="radio"
+                  id="Presencial"
+                  name="Atendimento"
+                  value="Presencial"
+                  required>
+         <label for=" Atendimento Presencial">Atendimento Presencial</label>
+         <br>
+         <input type="radio"
+                  id="Retirada no local"
+                  name="Atendimento"
+                  value="Retirada no local"
+                  required>
+         <label for="Retirada no local">Retirada no local</label>
+         <br>
+         <input type="radio"
+                  id="Entrega"
+                  name="Atendimento"
+                  value="Entrega"
+                  required>
+         <label for="Entrega">Entrega</label>
+         <br>
+        <br>
+         <p>Itens consumidos</p>
+         <input type="radio"
+                  id="Bebidas"
+                  name="Itens consumidos"
+                  value="Bebidas"
+                  required>
+         <label for="Bebidas">Bebidas</label>
+         <br>
+         <input type="radio"
+                  id="Lanches"
+                  name="Itens consumidos"
+                  value="Lanches"
+                  required>
+         <label for="Lanches">Lanches</label>
+         <br>
+         <input type="radio"
+                  id="Pratos"
+                  name="Itens consumidos"
+                  value="Pratos"
+                  required>
+         <label for="Pratos">Pratos</label>
+         <br>
+          <input type="radio"
+                  id="Sobremesas"
+                  name="Itens consumidos"
+                  value="Sobremesas"
+                  required>
+         <label for="Sobremesas">Sobremesas</label>
+         <br><br>
+         <label>Cor que representa a experiência do cliente</label>
+        <input type="color" name="favcor" value="0000FF">
+        <br> <br> 
+        <label>Insira um comentario ou observação sobre o atendimento</label><br>
+        <textarea></textarea><br><br>
+
+          <input type="range" name="nivel_de_satisfação" min="0" max="10" value="5" oninput="nivelAtual.value = this.value">
+        Muito Satisfeito <br><br>
+        Nível de Satisfação: <output id="nivelAtual">5</output>
+        <br> <br>
+        
+        <label>Comentários sobre o atendimento</label><br>
+        <textarea></textarea><br><br>
+
+        <input type="button" value="Clique aqui" onclick="alert('Obrigado por avaliar nosso atendimento')">
+        <br><br>
+         <input type="submit">
+    </form>
+</body>
+</html>

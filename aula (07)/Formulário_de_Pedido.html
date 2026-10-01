@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Formulario de Pedidos </title>
+</head>
+<body>
+    <form method="post" action=""onsubmit="alert('Cadastro realizado com Sucesso!')">
+        <h2>Formulário de Pedido de uma Lanchonete</h2>
+        <h4>insira seus dados para formular seu pedido</h4>
+
+        <label>Insira seu nome completo</label><br>
+        <input type="text" name="login" placeholder="Insara seu nome completo" required><br><br>
+        
+         <label>Insira seu email</label><br>
+        <input type="email" name="email"placeholder="Insira seu e-mail" required><br><br>
+
+        <p>Insira a data de atendimento</p>
+        <input type="date" name="nascimento"><br><br>
+         
+         <p>Tipo de pedido:</p>
+         <input type="radio"
+                  id="Presencial"
+                  name="pedido"
+                  value="Presencial"
+                  required>
+         <label for=" Atendimento Presencial">Atendimento Presencial</label>
+         <br>
+         <input type="radio"
+                  id="Retirada no local"
+                  name="pedido"
+                  value="Retirada no local"
+                  required>
+         <label for="Retirada no local">Retirada no local</label>
+         <br>
+         <input type="radio"
+                  id="Entrega"
+                  name="pedido"
+                  value="Entrega"
+                  required>
+         <label for="Entrega">Entrega</label>
+         <br>
+        <br>
+         <p>Produtos</p>
+         <input type="checkbox"
+                  id="Hambúrgue"
+                  name="Produtos"
+                  value="Hambúrgue"
+                  required>
+         <label for="Hambúrgue">Hambúrgue</label>
+         <br>
+         <input type="checkbox"
+                  id="Cachorro-quente"
+                  name="Produtos"
+                  value="Cachorro-quente"
+                  required>
+         <label for="Cachorro-quente">Cachorro-quente</label>
+         <br>
+         <input type="checkbox"
+                  id="Pizza"
+                  name="Produtos"
+                  value="Pizza"
+                  required>
+         <label for="Pizza">Pizza</label>
+         <br>
+          <input type="checkbox"
+                  id="Batata frita"
+                  name="Produtos"
+                  value="Batata frita"
+                  required>
+         <label for="Batata frita">Batata frita</label>
+         <br>
+          <input type="checkbox"
+                  name="Produtos"
+                  value="Refrigerante"
+                  required>
+         <label for="Refrigerante">Refrigerante</label>
+         <br>
+         <input type="checkbox"
+                  id="Suco"
+                  name="Produtos"
+                  value="Suco"
+                  required>
+         <label for="Suco">Suco</label>
+         <br><br>
+         <p>Seleção preferencial</p>
+         <input type="checkbox"
+                  id="Sem cebola"
+                  name="Produtos"
+                  value="Sem cebola"
+                  required>
+         <label for="Sem cebola">Sem cebola</label>
+         <br><br>
+         <input type="checkbox"
+                  id="Sem tomate"
+                  name="Produtos"
+                  value="Sem tomate"
+                  required>
+         <label for="Sem tomate">Sem tomate</label>
+         <br><br>
+         <input type="checkbox"
+                  id="Sem queijo"
+                  name="Produtos"
+                  value="Sem queijo"
+                  required>
+         <label for="Sem queijo">Sem queijo</label>
+         <br><br>
+         <input type="checkbox"
+                  id="Molho separado"
+                  name="Produtos"
+                  value="Molho separado"
+                  required>
+         <label for="Molho separado">Molho separado</label>
+         <br><br>
+
+         <input type="range" name="qauntidade_de_itens" min="0" max="15" value="1" oninput="nivelAtual.value = this.value">
+        Quantidade maxima de Itens<br><br>
+        Quantidade: <output id="nivelAtual">1</output>
+        <br> <br>
+
+          <p>Insira a data do pedido</p>
+        <input type="date" name="nascimento"><br><br>
+ 
+         <label>Escolha o horário do pedido</label>
+        <br><br>
+         <input type="time" name="horario" min="08:00" max="18:00">
+        <br>
+        <br>
+         <label>Cor preferida para a embalagem</label>
+        <input type="color" name="favcor" value="0000FF">
+        <br> <br> 
+        <label>Observações sobre o pedido</label><br>
+        <textarea></textarea><br><br>
+
+
+        <input type="button" value="Clique aqui Para enviar pedido" onclick="alert('Pedido registrado com sucesso!')">
+        <br><br>
+         <input type="submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Escolar</title>
+</head>
+<body>
+    <form method="post" action=""onsubmit="alert('Cadastro realizado com Sucesso!')">
+        <h2>Entrega de Atividade Escolar</h2>
+        <p>insira seus dados para fazer a Entrega da Atividade</p>
+
+        <label>Insira seu nome completo</label><br>
+        <input type="text" name="login" placeholder="Insara seu nome completo" required><br><br>
+        
+        <label>Insira seu email</label><br>
+        <input type="email" name="email"placeholder="Insira seu e-mail" required><br><br>
+
+        <p>Data de entregra</p>
+        <input type="date" name="nascimento"><br><br>
+        
+         <p>Qual e a Materia da atividade:</p>
+         <input type="radio"
+                  id="Desenvolvimento Web"
+                  name="Curso tecnico"
+                  value="Desenvolvimento Web"
+                  required>
+         <label for="Desenvolvimento Web">Desenvolvimento Sistema</label>
+         <br>
+         <input type="radio"
+                  id="Análise de Dados"
+                  name="Curso tecnico"
+                  value="Análise de Dados"
+                  required>
+         <label for="Análise de Dados">Análise de Dados</label>
+         <br>
+        <input type="radio"
+                  id="Banco de Dados"
+                  name="Curso tecnico"
+                  value="Banco de Dados"
+                  required>
+         <label for="Banco de Dados">Banco de Dados</label>
+         <br>
+         <input type="radio"
+                  id="Programação"
+                  name="Curso tecnico"
+                  value="Programação"
+                  required>
+         <label for="Programação">Programação</label>
+         <br><br>
+         <p>Tipo de atividade:</p>
+         <input type="radio"
+                  id="Trabalho individua"
+                  name="atividade"
+                  value="Trabalho individua"
+                  required>
+         <label for="Trabalho individua">Trabalho individua</label>
+         <br>
+         <input type="radio"
+                  id="Trabalho em equipe"
+                  name="atividade"
+                  value="Trabalho em equipe"
+                  required>
+         <label for="Trabalho em equipe">Trabalho em equipe</label>
+         <br>
+         <input type="radio"
+                  id="Recuperação"
+                  name="atividade"
+                  value="Recuperação"
+                  required>
+         <label for="Recuperação">Recuperação</label>
+         <br>
+         <input type="radio"
+                  id="Projeto"
+                  name="atividade"
+                  value="Projeto"
+                  required>
+         <label for="Projeto">Projeto</label>
+         <br><br>
+
+        <label>Professor: Insira um comentario ou observação sobre a atividade</label><br>
+        <textarea></textarea><br><br>
+
+         <label>Envie o arquivo do Trabalho </label> <br>
+        <input type="file" name="arquivos"><br> <br>
+         <p>Confirmo que os arquivos enviados são de minha autoria.</p>
+         <input type="radio"
+                  id="Sim"
+                  name="Autorizacao"
+                  value="Sim"
+                  required>
+         <label for="Sim">Sim altorizo  o uso</label>
+         <br>
+          <input type="radio"
+                  id="Nao"
+                  name="Autorizacao"
+                  value="Nao"
+                  required>
+         <label for="Nao">Nao altorizo  o uso</label>
+         <br>
+        
+        <input type="button" value="Clique aqui" onclick="alert('Atividade enviada com sucesso!')">
+        <br>
+         <input type="submit">
+    </form>
+</body>
+</html>

@@ -48,7 +48,7 @@
         <input type="color" name="favcor" value="0000FF">
         <br> <br> <br>
 
-        <label>Insira um comentario ou observação sobre o cadastro</label><br>
+        <label>Insira um comentario ou observação sobre o cadastro de atendimento</label><br>
         <textarea></textarea><br><br>
 
          <label>Anexar exames</label> <br>
@@ -59,7 +59,24 @@
         Nível de dor selecionado: <output id="nivelAtual">5</output>
         <br> <br>
 
-        <input type="button" value="Clique aqui" onclick="alert('Obrigado por participar da pesquisa!')">
+         <p>Autorizo o uso dos meus dados para fins de agendamento.</p>
+         <input type="radio"
+                  id="Sim"
+                  name="Autorizacao"
+                  value="Sim"
+                  required>
+         <label for="Sim">Sim altorizo  o uso</label>
+         <br>
+          <input type="radio"
+                  id="Nao"
+                  name="Autorizacao"
+                  value="Nao"
+                  required>
+         <label for="Nao">Nao altorizo  o uso</label>
+         <br>
+         <br>
+
+        <input type="button" value="Clique aqui" onclick="alert('Solicitação Enviada!')">
         <br><br>
          <input type="submit">
     </form>

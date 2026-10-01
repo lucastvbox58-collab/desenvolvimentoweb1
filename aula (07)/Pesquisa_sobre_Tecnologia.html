@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso de Tecnologia</title>
+</head>
+<body>
+    <form method="post" action=""onsubmit="alert('Cadastro realizado com Sucesso!')">
+        <h2>Pesquisa de Uso de Tecnologia</h2>
+        <p>insira seus dados nop formulario da pesquisa</p>
+
+        <label>Insira seu nome completo</label><br>
+        <input type="text" name="login" placeholder="Insara seu nome completo" required><br><br>
+        
+        <label>Insira seu email</label><br>
+        <input type="email" name="email"placeholder="Insira seu e-mail" required><br>
+
+        <p>Data de Nascimento</p>
+        <input type="date" name="nascimento"><br><br>
+        
+         <p>Equipamentos utilizados:</p>
+         <input type="checkbox"
+                  id="Computador"
+                  name="Equipamento"
+                  value="Computador"
+                  required>
+         <label for="Computador">Computador</label>
+         <br>
+         <input type="checkbox"
+                  id="Notebook"
+                  name="Equipamento"
+                  value="Notebook"
+                  required>
+         <label for="Notebook">Notebook</label>
+         <br>
+        <input type="checkbox"
+                  id="Tablet"
+                  name="Equipamento"
+                  value="Tablet"
+                  required>
+         <label for="Tablet">Tablet</label>
+         <br>
+         <input type="checkbox"
+                  id="Smartphone"
+                  name="Equipamento"
+                  value="Smartphone"
+                  required>
+         <label for="Smartphone">Smartphone</label>
+         <br>
+         <input type="checkbox"
+                  id="Videogame"
+                  name="Equipamento"
+                  value="Videogame"
+                  required>
+         <label for="Videogame">Videogame</label>
+         <br><br>
+         <p>Principal finalidade de uso:</p>
+         <input type="radio"
+                  id="Estudo"
+                  name="atividade"
+                  value="Estudo"
+                  required>
+         <label for="Estudo">Estudo</label>
+         <br>
+         <input type="radio"
+                  id="Trabalho"
+                  name="atividade"
+                  value="Trabalho"
+                  required>
+         <label for="Trabalho">Trabalho</label>
+         <br>
+         <input type="radio"
+                  id="Comunicação"
+                  name="atividade"
+                  value="Comunicação"
+                  required>
+         <label for="Comunicação">Comunicação</label>
+         <br>
+         <input type="radio"
+                  id="Jogos"
+                  name="atividade"
+                  value="Jogos"
+                  required>
+         <label for="Jogos">Jogos</label>
+         <br>
+         <input type="radio"
+                  id="Entretenimento"
+                  name="atividade"
+                  value="Entretenimento"
+                  required>
+         <label for="Entretenimento">Entretenimento</label>
+         <br><br>
+
+        <label>Cor preferida para interfaces de sistemas</label>
+        <input type="color" name="favcor" value="0000FF">
+        <br> <br> 
+        <p>Quantidade de horas diárias de uso:</p>
+        <input type="range" name="Quantidade de horas diárias de uso" min="0" max="24" value="1" oninput="nivelAtual.value = this.value">
+        Quantidade maxima de horas<br><br>
+        Quantidade: <output id="nivelAtual">1</output>
+        <br> <br>
+        <p>Nível de conhecimento em tecnologia</p>
+        <input type="range" name="Nível de conhecimento em tecnologia" min="0" max="10" value="1" oninput="nivelAtualc.value = this.value">
+        Nível de conhecimento<br><br>
+        Nível: <output id="nivelAtualc">1</output>
+        <br> <br>
+
+        <label>Comentário sobre como a tecnologia faz parte de sua rotina</label><br>
+        <textarea></textarea><br><br>
+
+        
+        <label>Envie uma captura de tela ou imagem de um aplicativo que utiliza frequentemente.</label> <br><br>
+        <input type="file" name="arquivos" multiple required><br> <br>
+
+        <input type="button" value="Botão para enviar" onclick="alert('Obrigado por participar da pesquisa!')">
+        <br>
+    </form>
+</body>
+</html>
