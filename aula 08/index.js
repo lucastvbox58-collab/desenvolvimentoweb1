@@ -29,8 +29,7 @@ app.post("/adicionar",function(req, res){
   const quantidade = req.body.quantidade;
   
   const values = [nome,quantidade,preco];
-  const insert = 
-  "INSERT INTO produtos (nome,quantidade,preco)values(?,?,?)";
+  const insert = "INSERT INTO produtos (nome,quantidade,preco)values(?,?,?)";
    
   connection.query(insert,[nome,preco,quantidade],function(err, resultado){
     if (err){
@@ -42,8 +41,7 @@ app.post("/adicionar",function(req, res){
     }
   });
 });
-  
-  app.get("/listar",function(req, res){
+app.get("/listar",function(req, res){
     const selectAll = "SELECT * FROM produtos";
 
     connection.query(selectAll, function(err, rows){
@@ -81,4 +79,74 @@ app.post("/adicionar",function(req, res){
         }
    });
 });
+app.get("/deletar/:id", function(req,res){
+    const idDoProduto =req.params.id;
+    const deletarProduto = "DELETE FROM produtos WHERE id=?";
 
+    connection.query(deletarProduto,[idDoProduto],(err,rows) => {
+        if(!err){
+            console.log("Produto excluido com sucesso");
+            res.redirect("/listar");
+        }else{
+            console.error("Erro ao excluir produto",err);
+            res.status(500).send("Erro ao excluir produto!");
+        }
+    });
+});
+app.post("/atualizar/:id",(req,res) =>{
+
+    const update="UPATE produtosSET nome= ?, preco= ?,quantidade = ?, WHERE id = ?";
+    const nome = req.body.name;
+    const preco = req.body.preco;
+    const quantidade = req.body.quantidade;
+    const id = req.params.id;
+
+    connection.query(update, [nome, preco, quantidade, id], function (err, result){
+        if(!err){
+            console.log("Dados Atualizados com Sucesso!");
+            res.send("Dados Atualizados");
+        }else{
+            console.log("Erro ao atualizar!", err);
+            res.status(500).send("Erro ao atualizar!");
+        }
+    });
+});
+app.post("/atualizar-form/:id", function(req,res){
+    const id = req.params.id;
+    const selectProdutos= ("SELECT * FROM produtos WHERE id=?")
+
+    connection.query(selectProdutos, [id], function(err, result){
+        if(!err && result.legth >0){
+            const produto = result[0];
+            res.send(`
+                <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="vieport" content="windth=device-width,initial-scarle=1.0">
+        <title>Atualizar Cadastro de Produtos</title>
+    </head>     
+    <body>
+    <h1>Atualizar Cadastro de Produtos</h1>
+    
+        <form action"/atualizar/${id}" method="POST">
+        <label for="nome"> Nome do Produto</label><br>
+        <input type="text"id="nome" name="nome" values=${produto.nome}required> <br>
+        <br>
+        <label for="quantidade">Qanidade</label> <br>
+        <input type="number" id="quantidade" name="quantidade"value=${produto.quantidade}required> <br>
+        <br>
+        <label for=preco>Preço</label><br>
+        <input type="number" id="preco} required> <br>
+        <input type="Submit">
+        <br>
+        <a href="/listar">Listar produtos</a>
+    </form>
+    </body.
+    </html`)
+        }else{
+            console.log("Erro ao obter odados do produto", err);
+            res.status(500).send("Erro ao obter dados do produto");
+        }
+    });
+});

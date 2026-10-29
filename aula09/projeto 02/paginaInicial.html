@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alunos</title>
+
+    <style>
+        body {
+            background-color: rgb(117, 117, 117);
+            color: rgba(255, 255, 255, 0.767);
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* CABEÇALHO */
+
+        .cabecalho {
+            width: 100%;
+            background-color: rgb(55, 55, 55);
+            padding: 25px 0;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .cabecalho h1 {
+            margin: 0;
+            color: rgba(0, 195, 255, 0.712);
+            font-size: 42px;
+        }
+
+        .cabecalho h2 {
+            margin: 10px 0 0;
+            color: rgba(0, 195, 255, 0.712);
+            font-size: 30px;
+        }
+
+        /* TÍTULOS */
+
+        h1 {
+            color: rgba(0, 174, 255, 0.712);
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            color: rgba(0, 174, 255, 0.712);
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            background-color: rgb(37, 37, 37);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        /* TEXTOS */
+
+        p {
+            color: white;
+            font-size: 20px;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        /* FAIXA */
+
+        .faixa {
+            width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(
+                to right,
+                #00a2ff 0px,
+                #e7e6af 70px,
+                transparent 70px,
+                transparent 105px
+            );
+            margin-bottom: 25px;
+        }
+
+        /* MENU */
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-container {
+            padding: 15px 25px;
+            border-radius: 10px;
+            background-color: rgb(55, 55, 55);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-container:hover {
+            background-color: rgb(0, 110, 255);
+            transform: translateY(-3px);
+        }
+
+        .nav-container a:hover {
+            color: white;
+        }
+
+        /* PÁGINA INÍCIO */
+
+        .pagina-inicio .Cadastro {
+            background-color: rgb(55, 55, 55);
+        }
+
+        /* CARDS */
+
+        .card-icone {
+            width: 190px;
+            min-height: 300px;
+            background-color: rgb(0, 247, 255);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .card-icone:hover {
+            transform: translateY(-8px);
+            background-color: rgb(0, 183, 255);
+        }
+
+        .card-icone h3 {
+            color: #ffffff;
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .card-icone p {
+            color: white;
+            font-size: 16px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body class="pagina-inicio">
+
+    <!-- CABEÇALHO -->
+
+    <header class="cabecalho">
+        <h1>Cadastro de alunos</h1>
+        <h2>Para um futuro onde seus estudos te levarem!</h2>
+    </header>
+
+    <!-- MENU -->
+
+    <div class="icones">
+        <nav>
+            <div class="nav-container Cadastro">
+                <a href="/cadastro">Cadastro</a>
+            </div>
+
+            <div class="nav-container Listar">
+                <a href="/listar">Listar</a>
+            </div>
+
+            <div class="nav-container atualizar">
+                <a href="/listar">Atualizar</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- RODAPÉ -->
+
+    <footer>
+        Lucas Meireles - 10/09/2026
+    </footer>
+
+</body>
+
+</html>
+```
